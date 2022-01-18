@@ -1,16 +1,17 @@
 import useJsonFetch from '../hooks/useJsonFetch';
+import PropTypes from 'prop-types';
 
-const Data = () => {
-    const [data, loading, error] = useJsonFetch('http://localhost:7070/data');
+export function Data({ endpoint, title }) {
+  const [data, loading, error] = useJsonFetch(`${process.env.REACT_APP_TEST_URL}${endpoint}`);
 
-    return (
-        <div className="Data">
-            <div className="Result">
-                {loading && 'Loading...'}
-                {data.status}
-            </div>
-        </div>
-    );
-};
+  return (
+    <div>
+      {title}: {(loading && 'Загрузка...') || (data && data.status) || (error && 'Ошибка!')}
+    </div>
+  );
+}
 
-export default Data;
+Data.propTypes = {
+  endpoint: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+}

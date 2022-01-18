@@ -1,16 +1,12 @@
 import './App.css';
-import Data from "./components/Data";
-import Error from "./components/Error";
-import Loading from "./components/Loading";
+import { Data } from './components/Data';
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <Data />
-      <Error />
-      <Loading />
+    <div>
+      <Data endpoint="data" title="Got Data" />
+      <Data endpoint="error" title="Error Data" />
+      <Data endpoint="loading" title="Loading Data" />
     </div>
   );
 }
-
-export default App;
